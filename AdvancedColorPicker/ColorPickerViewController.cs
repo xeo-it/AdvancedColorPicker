@@ -22,8 +22,8 @@
 */
 
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace AdvancedColorPicker
 {
@@ -31,7 +31,7 @@ namespace AdvancedColorPicker
 	{
 		public event Action ColorPicked;
 
-		SizeF satBrightIndicatorSize = new SizeF(28,28);
+		CGSize satBrightIndicatorSize = new CGSize(28,28);
 		HuePickerView huewView = new HuePickerView();
 		SaturationBrightnessPickerView satbrightview = new SaturationBrightnessPickerView();
 		SelectedColorPreviewView selPrevView = new SelectedColorPreviewView();
@@ -56,35 +56,35 @@ namespace AdvancedColorPicker
 
 			float viewSpace = 1;
 
-			selPrevView.Frame = new RectangleF(0,0,this.View.Bounds.Width,selectedColorViewHeight);
+			selPrevView.Frame = new CGRect(0,0,this.View.Bounds.Width,selectedColorViewHeight);
 			selPrevView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 			selPrevView.Layer.ShadowOpacity = 0.6f;
-			selPrevView.Layer.ShadowOffset = new SizeF(0,7);
+			selPrevView.Layer.ShadowOffset = new CGSize(0,7);
 			selPrevView.Layer.ShadowColor = UIColor.Black.CGColor;
 
 
 			//to megalo view epilogis apoxrwsis tou epilegmenou xrwmats
-			satbrightview.Frame = new RectangleF(0,selectedColorViewHeight + viewSpace , this.View.Bounds.Width, this.View.Bounds.Height - selectedColorViewHeight - selectedColorViewHeight  - viewSpace - viewSpace);
+			satbrightview.Frame = new CGRect(0,selectedColorViewHeight + viewSpace , this.View.Bounds.Width, this.View.Bounds.Height - selectedColorViewHeight - selectedColorViewHeight  - viewSpace - viewSpace);
 			satbrightview.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 			satbrightview.ColorPicked += HandleColorPicked;
 			satbrightview.AutosizesSubviews = true;
 
 			//to mikro view me ola ta xrwmata
-			huewView.Frame = new RectangleF(0, this.View.Bounds.Bottom - selectedColorViewHeight, this.View.Bounds.Width, selectedColorViewHeight);
+			huewView.Frame = new CGRect(0, this.View.Bounds.Bottom - selectedColorViewHeight, this.View.Bounds.Width, selectedColorViewHeight);
 			huewView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
 			huewView.HueChanged += HandleHueChanged;
 
 			huewIndicatorView.huePickerViewRef = huewView;
-			float pos = huewView.Frame.Width * huewView.Hue;
-			huewIndicatorView.Frame = new RectangleF(pos - 10,huewView.Bounds.Y - 2,20,huewView.Bounds.Height + 2);
+			nfloat pos = huewView.Frame.Width * huewView.Hue;
+			huewIndicatorView.Frame = new CGRect(pos - 10,huewView.Bounds.Y - 2,20,huewView.Bounds.Height + 2);
 			huewIndicatorView.UserInteractionEnabled = false;
 			huewIndicatorView.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 			huewView.AddSubview(huewIndicatorView);
 
 			satBrightIndicatorView.satBrightPickerViewRef = satbrightview;
-			PointF pos2 = new PointF(satbrightview.saturation * satbrightview.Frame.Size.Width, 
+			CGPoint pos2 = new CGPoint(satbrightview.saturation * satbrightview.Frame.Size.Width, 
 			                         satbrightview.Frame.Size.Height - (satbrightview.brightness * satbrightview.Frame.Size.Height));
-			satBrightIndicatorView.Frame = new RectangleF(pos2.X - satBrightIndicatorSize.Width/2,pos2.Y-satBrightIndicatorSize.Height/2,satBrightIndicatorSize.Width,satBrightIndicatorSize.Height);
+			satBrightIndicatorView.Frame = new CGRect(pos2.X - satBrightIndicatorSize.Width/2,pos2.Y-satBrightIndicatorSize.Height/2,satBrightIndicatorSize.Width,satBrightIndicatorSize.Height);
 			satBrightIndicatorView.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin;
 			satBrightIndicatorView.UserInteractionEnabled = false;
 			satbrightview.AddSubview(satBrightIndicatorView);
@@ -107,9 +107,9 @@ namespace AdvancedColorPicker
 		void PositionSatBrightIndicatorView ()
 		{
 			UIView.Animate(0.3f,0f,UIViewAnimationOptions.AllowUserInteraction, delegate() {
-				PointF pos = new PointF(satbrightview.saturation * satbrightview.Frame.Size.Width, 
+				CGPoint pos = new CGPoint(satbrightview.saturation * satbrightview.Frame.Size.Width, 
 				                        satbrightview.Frame.Size.Height - (satbrightview.brightness * satbrightview.Frame.Size.Height));
-				satBrightIndicatorView.Frame = new RectangleF(pos.X - satBrightIndicatorSize.Width/2,pos.Y-satBrightIndicatorSize.Height/2,satBrightIndicatorSize.Width,satBrightIndicatorSize.Height);
+				satBrightIndicatorView.Frame = new CGRect(pos.X - satBrightIndicatorSize.Width/2,pos.Y-satBrightIndicatorSize.Height/2,satBrightIndicatorSize.Width,satBrightIndicatorSize.Height);
 			}, delegate() {
 			});
 		}
@@ -117,8 +117,8 @@ namespace AdvancedColorPicker
 		void PositionHueIndicatorView ()
 		{
 			UIView.Animate(0.3f,0f,UIViewAnimationOptions.AllowUserInteraction, delegate() {
-				float pos = huewView.Frame.Width * huewView.Hue;
-				huewIndicatorView.Frame = new RectangleF(pos - 10,huewView.Bounds.Y - 2,20,huewView.Bounds.Height + 2);
+				nfloat pos = huewView.Frame.Width * huewView.Hue;
+				huewIndicatorView.Frame = new CGRect(pos - 10,huewView.Bounds.Y - 2,20,huewView.Bounds.Height + 2);
 			}, delegate() {
 				huewIndicatorView.Hidden = false;
 		});
@@ -147,7 +147,7 @@ namespace AdvancedColorPicker
 				return UIColor.FromHSB(satbrightview.hue,satbrightview.saturation,satbrightview.brightness);
 			}
 			set {
-				float hue = 0,brightness = 0,saturation = 0,alpha = 0;
+				nfloat hue = 0,brightness = 0,saturation = 0,alpha = 0;
 				value.GetHSBA(out hue,out saturation,out brightness,out alpha);
 				huewView.Hue = hue;
 				satbrightview.hue = hue;

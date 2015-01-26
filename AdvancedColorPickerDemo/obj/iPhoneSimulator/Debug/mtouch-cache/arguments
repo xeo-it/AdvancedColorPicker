@@ -1,0 +1,33 @@
+# Version: 8.6.0.51 (dfb682f)
+# [first argument, ignore] # /Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPickerDemo/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.6.0.51/bin/mtouch-64 \
+	--cache \
+	/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPickerDemo/obj/iPhoneSimulator/Debug/mtouch-cache \
+	--sim \
+	/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPickerDemo/bin/iPhoneSimulator/Debug/AdvancedColorPickerDemo.app \
+	--executable \
+	AdvancedColorPickerDemo \
+	--debug \
+	--nolink \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	8.1 \
+	--targetver \
+	5.1.1 \
+	--abi=i386 \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/bin/Debug//AdvancedColorPicker.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	-r \
+	/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/bin/Debug//AdvancedColorPicker.dll \
+	/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPickerDemo/bin/iPhoneSimulator/Debug//AdvancedColorPickerDemo.exe \

@@ -1,0 +1,5 @@
+/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/obj/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/bin/Debug/AdvancedColorPicker.dll.mdb
+/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/bin/Debug/AdvancedColorPicker.dll
+/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/obj/Debug/AdvancedColorPicker.dll
+/Users/Xeo/Development/Projects/Components/AdvancedColorPicker/AdvancedColorPicker/obj/Debug/AdvancedColorPicker.dll.mdb

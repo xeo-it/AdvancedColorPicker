@@ -22,9 +22,9 @@
 */
 
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace AdvancedColorPicker
 {
@@ -36,9 +36,9 @@ namespace AdvancedColorPicker
 		{
 		}
 
-		public float Hue { get; set; }
+		public nfloat Hue { get; set; }
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
@@ -48,7 +48,7 @@ namespace AdvancedColorPicker
 
 			float step=0.166666666666667f;
 
-			float[] locations = new float[] {
+			nfloat[] locations = new nfloat[] {
 				0.00f, 
 				step, 
 				step*2, 
@@ -74,31 +74,31 @@ namespace AdvancedColorPicker
 
 
 			CGGradient gradiend = new CGGradient(colorSpace,colors, locations);
-			context.DrawLinearGradient(gradiend,new PointF(rect.Size.Width,0),new PointF(0,0),CGGradientDrawingOptions.DrawsBeforeStartLocation);
+			context.DrawLinearGradient(gradiend,new CGPoint(rect.Size.Width,0),new CGPoint(0,0),CGGradientDrawingOptions.DrawsBeforeStartLocation);
 			gradiend.Dispose();
 			colorSpace.Dispose();
 		} // draw
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 			HandleTouches(touches,evt);
 		}
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesMoved (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 			HandleTouches(touches,evt);
 		}
 
-		private void HandleTouches (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		private void HandleTouches (Foundation.NSSet touches, UIEvent evt)
 		{
 			var touch = (UITouch)evt.TouchesForView (this).AnyObject;
-			PointF pos;
+			CGPoint pos;
 			pos = touch.LocationInView (this);
 
-			float p = pos.X;
+			nfloat p = pos.X;
 
-			float b = Frame.Size.Width;
+			nfloat b = Frame.Size.Width;
 	
 			if (p < 0)
 				Hue = 0;

@@ -22,9 +22,9 @@
 */
 
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 //using System.Diagnostics;
 
 namespace AdvancedColorPicker
@@ -37,11 +37,11 @@ namespace AdvancedColorPicker
 		{
 		}
 
-		public float hue { get; set; }
-		public float saturation { get; set; }
-		public float brightness { get; set; }
+		public nfloat hue { get; set; }
+		public nfloat saturation { get; set; }
+		public nfloat brightness { get; set; }
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			//Stopwatch s = new Stopwatch();
 			//s.Start();
@@ -51,17 +51,17 @@ namespace AdvancedColorPicker
 			CGContext context = UIGraphics.GetCurrentContext ();
 
 			CGColor[] gradColors = new CGColor[] {UIColor.FromHSBA(hue,1,1,1).CGColor,new CGColor(1,1,1,1)};
-			float[] gradLocations = new float[] { 0.0f, 1.0f };
+			nfloat[] gradLocations = new nfloat[] { 0.0f, 1.0f };
 
 			var colorSpace = CGColorSpace.CreateDeviceRGB ();
 
 			CGGradient gradient = new CGGradient (colorSpace, gradColors, gradLocations);
-			context.DrawLinearGradient(gradient,new PointF(rect.Size.Width,0),new PointF(0,0),CGGradientDrawingOptions.DrawsBeforeStartLocation);
+			context.DrawLinearGradient(gradient,new CGPoint(rect.Size.Width,0),new CGPoint(0,0),CGGradientDrawingOptions.DrawsBeforeStartLocation);
 	
 			gradColors = new CGColor[] {new CGColor(0,0,0,0), new CGColor(0,0,0,1)};
 	
 			gradient = new CGGradient(colorSpace,gradColors, gradLocations);
-			context.DrawLinearGradient(gradient,new PointF(0,0),new PointF(0,rect.Size.Height),CGGradientDrawingOptions.DrawsBeforeStartLocation);
+			context.DrawLinearGradient(gradient,new CGPoint(0,0),new CGPoint(0,rect.Size.Height),CGGradientDrawingOptions.DrawsBeforeStartLocation);
 
 			gradient.Dispose();
 			colorSpace.Dispose();
@@ -70,26 +70,26 @@ namespace AdvancedColorPicker
 			//Console.WriteLine("-----> SatBright Draw time: " + s.Elapsed.ToString());
 		} //draw
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 			HandleTouches(touches,evt);
 		}
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesMoved (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 			HandleTouches(touches,evt);
 		}
 	
 		
-		private void HandleTouches (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		private void HandleTouches (Foundation.NSSet touches, UIEvent evt)
 		{
 			var touch = (UITouch)evt.TouchesForView (this).AnyObject;
-			PointF pos;
+			CGPoint pos;
 			pos = touch.LocationInView (this);
 
-			float w = Frame.Size.Width;
-			float h = Frame.Size.Height;
+			nfloat w = Frame.Size.Width;
+			nfloat h = Frame.Size.Height;
 			
 			if (pos.X < 0)
 				saturation = 0;

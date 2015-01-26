@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using AdvancedColorPicker;
 
 namespace AdvancedColorPickerDemo
@@ -61,7 +61,7 @@ namespace AdvancedColorPickerDemo
 			nav = new UINavigationController(container);
 
 			pickAColorBtn = UIButton.FromType(UIButtonType.RoundedRect);
-			pickAColorBtn.Frame = new System.Drawing.RectangleF(UIScreen.MainScreen.Bounds.Width/2 - 50,UIScreen.MainScreen.Bounds.Height/2 - 22,100,44);
+			pickAColorBtn.Frame = new CoreGraphics.CGRect(UIScreen.MainScreen.Bounds.Width/2 - 50,UIScreen.MainScreen.Bounds.Height/2 - 22,100,44);
 			pickAColorBtn.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			pickAColorBtn.SetTitle("Pick a color!",UIControlState.Normal);
 			pickAColorBtn.TouchUpInside += pickAColorBtn_HandleTouchUpInside;
@@ -93,7 +93,7 @@ namespace AdvancedColorPickerDemo
 		void doneBtn_HandleClicked (object sender, EventArgs e)
 		{
 			HandleColorPicked();
-			nav.DismissModalViewControllerAnimated(true);
+			nav.DismissModalViewController(true);
 		}
 
 		void HandleColorPicked ()

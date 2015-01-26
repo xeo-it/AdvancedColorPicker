@@ -22,9 +22,9 @@
 */
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace AdvancedColorPicker
 {
@@ -37,20 +37,20 @@ namespace AdvancedColorPicker
 
 		public HuePickerView huePickerViewRef;
 
-		public override void Draw (System.Drawing.RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
 			CGContext context = UIGraphics.GetCurrentContext();
 
-			float indicatorLength = rect.Size.Height / 3;
+			nfloat indicatorLength = rect.Size.Height / 3;
 
 			context.SetFillColor(UIColor.Black.CGColor);
 			context.SetStrokeColor(UIColor.White.CGColor);
 			context.SetLineWidth(0.5f);
-			context.SetShadow(new SizeF(0,0),4);
+			context.SetShadow(new CGSize(0,0),4);
 
-			float pos = rect.Width / 2;
+			nfloat pos = rect.Width / 2;
 
 			context.MoveTo(pos - (indicatorLength/2), -1);
 			context.AddLineToPoint(pos+(indicatorLength/2), -1);
